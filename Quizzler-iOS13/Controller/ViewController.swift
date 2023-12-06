@@ -25,7 +25,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         progressBar.progress = 0.0
-        uTimer();
+        questionText.text = quizBrain.getQuestionText()
     }
     
     
@@ -38,12 +38,13 @@ class ViewController: UIViewController {
             sender.backgroundColor = UIColor.red
         }
         
-        progressBar.progress =   quizBrain.progressTracker()
-        
         Timer.scheduledTimer(timeInterval: 0.5, target: self, selector:#selector(uTimer), userInfo: nil, repeats: false  )
+        
+        
     }
     
     @objc func uTimer () {
+        progressBar.progress =   quizBrain.progressTracker()
         trueButton.backgroundColor = UIColor.clear
         falseButton.backgroundColor = UIColor.clear
         questionText.text = quizBrain.getQuestionText()

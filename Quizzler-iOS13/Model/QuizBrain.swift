@@ -41,7 +41,7 @@ struct QuizBrain {
     }
     
     mutating func getQuestionText() -> String {
-        qNumber += 1
+        qNumber  = (qNumber+1) % self.quiz.count
         return quiz[qNumber].text
     }
     
