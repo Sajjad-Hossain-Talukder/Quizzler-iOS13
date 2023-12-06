@@ -45,6 +45,7 @@ class ViewController: UIViewController {
     }
     
     @objc func uTimer () {
+        
         progressBar.progress =   quizBrain.progressTracker()
         scoreAction.text = quizBrain.getScore();
         trueButton.backgroundColor = UIColor.clear

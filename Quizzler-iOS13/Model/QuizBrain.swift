@@ -44,6 +44,9 @@ struct QuizBrain {
     
     mutating func getQuestionText() -> String {
         qNumber  = (qNumber+1) % self.quiz.count
+        if qNumber == 0 {
+            score = 0 
+        }
         return quiz[qNumber].text
     }
     
