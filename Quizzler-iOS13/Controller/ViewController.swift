@@ -20,11 +20,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var trueButton: UIButton!
     @IBOutlet weak var falseButton: UIButton!
     @IBOutlet weak var progressBar: UIProgressView!
-    
+    @IBOutlet weak var scoreAction: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         progressBar.progress = 0.0
+        scoreAction.text = quizBrain.getScore();
         questionText.text = quizBrain.getQuestionText()
     }
     
@@ -45,6 +46,7 @@ class ViewController: UIViewController {
     
     @objc func uTimer () {
         progressBar.progress =   quizBrain.progressTracker()
+        scoreAction.text = quizBrain.getScore();
         trueButton.backgroundColor = UIColor.clear
         falseButton.backgroundColor = UIColor.clear
         questionText.text = quizBrain.getQuestionText()
