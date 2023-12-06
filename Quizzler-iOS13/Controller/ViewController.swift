@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var questionText: UILabel!
     @IBOutlet weak var trueButton: UIButton!
     @IBOutlet weak var falseButton: UIButton!
+    @IBOutlet weak var thrirdOp: UIButton!
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var scoreAction: UILabel!
     
@@ -27,6 +28,9 @@ class ViewController: UIViewController {
         progressBar.progress = 0.0
         scoreAction.text = quizBrain.getScore();
         questionText.text = quizBrain.getQuestionText()
+        trueButton.setTitle(quizBrain.getOption(0), for: .normal)
+        falseButton.setTitle(quizBrain.getOption(1), for: .normal)
+        thrirdOp.setTitle(quizBrain.getOption(2), for: .normal)
     }
     
     
@@ -38,6 +42,7 @@ class ViewController: UIViewController {
         } else {
             sender.backgroundColor = UIColor.red
         }
+        quizBrain.nextQuestion()
         
         Timer.scheduledTimer(timeInterval: 0.5, target: self, selector:#selector(uTimer), userInfo: nil, repeats: false  )
         
@@ -50,7 +55,11 @@ class ViewController: UIViewController {
         scoreAction.text = quizBrain.getScore();
         trueButton.backgroundColor = UIColor.clear
         falseButton.backgroundColor = UIColor.clear
+        thrirdOp.backgroundColor = UIColor.clear
         questionText.text = quizBrain.getQuestionText()
+        trueButton.setTitle(quizBrain.getOption(0), for: .normal)
+        falseButton.setTitle(quizBrain.getOption(1), for: .normal)
+        thrirdOp.setTitle(quizBrain.getOption(2), for: .normal)
     }
 
 }
