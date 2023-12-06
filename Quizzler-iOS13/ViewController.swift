@@ -11,9 +11,19 @@ import UIKit
 class ViewController: UIViewController {
     
     let quiz = [
-        ["Dhaka is the capital of Bangladesh", "True"],
-        ["Delhi is the capital of Thailand","False"] ,
-        ["Bangkok  is the capital of South Africa","False"]
+        Question(q: "A slug's blood is green.", a: "True"),
+                Question(q: "Approximately one quarter of human bones are in the feet.", a: "True"),
+                Question(q: "The total surface area of two human lungs is approximately 70 square metres.", a: "True"),
+                Question(q: "In West Virginia, USA, if you accidentally hit an animal with your car, you are free to take it home to eat.", a: "True"),
+                Question(q: "In London, UK, if you happen to die in the House of Parliament, you are technically entitled to a state funeral, because the building is considered too sacred a place.", a: "False"),
+                Question(q: "It is illegal to pee in the Ocean in Portugal.", a: "True"),
+                Question(q: "You can lead a cow down stairs but not up stairs.", a: "False"),
+                Question(q: "Google was originally called 'Backrub'.", a: "True"),
+                Question(q: "Buzz Aldrin's mother's maiden name was 'Moon'.", a: "True"),
+                Question(q: "The loudest sound produced by any animal is 188 decibels. That animal is the African Elephant.", a: "False"),
+                Question(q: "No piece of square dry paper can be folded in half more than 7 times.", a: "False"),
+                Question(q: "Chocolate affects a dog's heart and nervous system; a few ounces are enough to kill a small dog.", a: "True")
+
     ]
     var qNumber = 0
     
@@ -31,12 +41,12 @@ class ViewController: UIViewController {
     
     @IBAction func buttonAction(_ sender: UIButton) {
         let userAnswer = sender.currentTitle!
-        let actualAnswer = quiz[qNumber][1]
+        let actualAnswer = quiz[qNumber].answer
         
         if userAnswer == actualAnswer {
-            print("Wow.....Right")
+            sender.backgroundColor = UIColor.green
         } else {
-            print("Wrong!!!")
+            sender.backgroundColor = UIColor.red
         }
         qNumber += 1
         qNumber %= 3
@@ -44,7 +54,9 @@ class ViewController: UIViewController {
     }
     
     func askQuestion(){
-        questionText.text = quiz[qNumber][0]
+        questionText.text = quiz[qNumber].text
+        trueButton.backgroundColor = UIColor.clear
+        falseButton.backgroundColor = UIColor.clear
     }
     
 
