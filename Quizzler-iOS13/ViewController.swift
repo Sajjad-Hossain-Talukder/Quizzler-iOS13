@@ -25,7 +25,10 @@ class ViewController: UIViewController {
                 Question(q: "Chocolate affects a dog's heart and nervous system; a few ounces are enough to kill a small dog.", a: "True")
 
     ]
+    
     var qNumber = 0
+    var timer = Timer()
+    var tQuestion : Int = 0
     
     @IBOutlet weak var questionText: UILabel!
     @IBOutlet weak var trueButton: UIButton!
@@ -35,6 +38,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        progressBar.progress = 0.0
         askQuestion()
     }
     
@@ -43,20 +47,28 @@ class ViewController: UIViewController {
         let userAnswer = sender.currentTitle!
         let actualAnswer = quiz[qNumber].answer
         
+        tQuestion = quiz.count
+        print(tQuestion, qNumber )
+        progressBar.progress =   Float(qNumber+1) / Float(tQuestion)
+        
         if userAnswer == actualAnswer {
             sender.backgroundColor = UIColor.green
         } else {
             sender.backgroundColor = UIColor.red
         }
+        
+        Timer.scheduledTimer(timeInterval: 0.5, target: self, selector:#selector(uTimer), userInfo: nil, repeats: false  )
+    }
+    
+    @objc func uTimer () {
+        trueButton.backgroundColor = UIColor.clear
+        falseButton.backgroundColor = UIColor.clear
         qNumber += 1
-        qNumber %= 3
         askQuestion()
     }
     
     func askQuestion(){
         questionText.text = quiz[qNumber].text
-        trueButton.backgroundColor = UIColor.clear
-        falseButton.backgroundColor = UIColor.clear
     }
     
 
